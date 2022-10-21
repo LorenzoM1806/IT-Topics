@@ -60,6 +60,63 @@ router.get('/', (req, res) => {
 });
 
 /**
+ * Return all docenten
+ */
+ router.get('/docent', async (req, res) => {
+  console.log('/docent route called');
+  try {
+    res.json(await Docent.find().populate('campussen').sort('voornaam'));
+  } catch(e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+ router.get('/docent/:id', async (req, res) => {
+  console.log('/docent/:id route called');
+  try {
+    res.send(await Docent.findById(req.params.id));
+  } catch(e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+ router.post('/docent/create', async (req, res) => {
+  console.log('/docent/create route called');
+  try {
+    res.send(await Docent.create(req.body));
+  } catch(e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+ router.put('/docent/update/:id', async (req, res) => {
+  console.log('/docent/update/:id route called');
+  try {
+    res.send(await Docent.findByIdAndUpdate(req.params.id, { $set: req.body }));
+  } catch(e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+ router.delete('/docent/delete/:id', async (req, res) => {
+  console.log('/docent/delete/:id route called');
+  try {
+    res.send(await Docent.findByIdAndDelete(req.params.id));
+  } catch(e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
+module.exports = router;
+
+/****************************************************************************/
+
+/**
  * Return all campuses
  */
 router.get('/campus', async (req, res) => {
@@ -71,6 +128,8 @@ router.get('/campus', async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+
 
 /**
  * Returns one single campus in the database using .findById(objectId)
