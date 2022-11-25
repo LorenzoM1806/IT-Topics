@@ -1,5 +1,5 @@
 const request = require ('supertest');
-const fs = require("os");
+const fs = require('fs');
 //test 2
 describe('get campus', () => {
     it('should return first campus', async () => {
