@@ -1,5 +1,5 @@
 const request = require ('supertest');
-//test
+//test 2
 describe('get campus', () => {
     it('should return first campus', async () => {
         await request('https://campus-api-example.netlify.app')
