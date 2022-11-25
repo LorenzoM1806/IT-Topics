@@ -9,5 +9,5 @@ describe('get campus', () => {
         .expect((res) => {
             console.log(res.body[0])
         })
-    })
-})
+    });
+});
